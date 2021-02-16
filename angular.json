@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "certyficate-course"
+    }
+  },
+  "defaultProject": "certyficate-course",
+  "cli": {
+    "analytics": "683dd4ad-e84a-474f-88dd-f45083debde4"
+  }
 }
