@@ -1,9 +1,11 @@
 <div class="row">
   <div class="col-md-12">
-    <img [src]="recipe.imagePath" 
-    [alt]="recipe.name" 
-    class="img-responsive"
-    style="max-height: 300px;" />
+    <img
+      [src]="recipe.imagePath"
+      [alt]="recipe.name"
+      class="img-responsive"
+      style="max-height: 300px"
+    />
   </div>
 </div>
 
@@ -25,15 +27,15 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Manage app-recipe-detail
+        Manage recipe
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
         <li>
-          <a href="#" class="dropdown-item">Add Ingredients to Shopping List</a>
+          <a (click)="onAddToShoppingList() "class="dropdown-item">Add Ingredients to Shopping List</a>
         </li>
-        <li><a href="#" class="dropdown-item">Edit Recipe</a></li>
-        <li><a href="#" class="dropdown-item">Delete Recipe</a></li>
+        <li><a class="dropdown-item" (click)="onEditRecipe()">Edit Recipe</a></li>
+        <li><a class="dropdown-item">Delete Recipe</a></li>
       </ul>
     </div>
   </div>
@@ -46,5 +48,11 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">Ingredients</div>
+  <div class="col-md-12">
+    <div class="list-group">
+      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+        {{ ingredient.name }} - {{ ingredient.amount }}
+      </li>
+    </div>
+  </div>
 </div>
