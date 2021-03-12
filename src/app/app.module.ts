@@ -25,6 +25,7 @@ import { RecipeResolverService } from './shaared/services/recipes-resolver.servi
 import { AuthService } from './shaared/services/auth.service';
 import { AuthInterceptorService } from './shaared/auth-interceptor.service';
 import { AuthGuard } from './shaared/auth.guard';
+import { AlertComponent } from './shaared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AuthGuard } from './shaared/auth.guard';
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
