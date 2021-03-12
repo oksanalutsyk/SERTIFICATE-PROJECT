@@ -4,6 +4,7 @@ import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user.model';
 
+import { environment } from '../../../environments/environment'
 export interface AuthResponseData {
   //  kind:string;
   idToken: string;
@@ -27,7 +28,7 @@ export class AuthService {
   signUp(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBfVbwSWS5Nk0ajWHUSJtp9lpTNTRyttmk',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
         {
           email: email,
           password: password,
@@ -50,7 +51,7 @@ export class AuthService {
   logIn(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBfVbwSWS5Nk0ajWHUSJtp9lpTNTRyttmk',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey,
 
         {
           email: email,
