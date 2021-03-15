@@ -22,7 +22,7 @@ import { shoppingListReducer } from './store/reducers/shopping-list.reducer';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    // StoreModule.forRoot({shoppingList: shoppingListReducer}),
+    StoreModule.forRoot({shoppingList: shoppingListReducer}),
     CoreModule,
     SharedModule,
   ],
