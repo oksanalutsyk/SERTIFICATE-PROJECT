@@ -6,13 +6,11 @@ import { AuthService } from "./shaared/services/auth.service";
 import { DataStorageService } from "./shaared/services/data-storage.service";
 import { RecipeService } from "./shaared/services/recipe.service";
 import { RecipeResolverService } from "./shaared/services/recipes-resolver.service";
-import { ShoppingListService } from "./shaared/services/shopping-list.service";
 
 
 @NgModule({
     providers: [
         RecipeService,
-        ShoppingListService,
         DataStorageService,
         RecipeResolverService,
         AuthService,
