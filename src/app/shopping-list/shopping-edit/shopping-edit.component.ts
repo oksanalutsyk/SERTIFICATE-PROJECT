@@ -5,7 +5,8 @@ import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/models/ingredient.model';
 
 import * as ShoppingListActions from '../../store/actions/shopping-list.actions';
-import * as fromShoppingList from '../../store/reducers/shopping-list.reducer'
+import * as fromApp from '../../store/reducers/app.reducer'
+
 
 @Component({
   selector: 'app-shopping-edit',
@@ -14,7 +15,7 @@ import * as fromShoppingList from '../../store/reducers/shopping-list.reducer'
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
   constructor(
-    private store: Store<fromShoppingList.AppState>
+    private store: Store<fromApp.AppState>
   ) {}
 
   testForm: FormGroup;

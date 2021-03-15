@@ -3,9 +3,6 @@ import { Action } from '@ngrx/store';
 import { Ingredient } from '../../models/ingredient.model';
 import * as ShoppingListActions from '../actions/shopping-list.actions';
 
-export interface AppState {
-  shoppingList: State;
-}
 export interface State {
   ingredients: Ingredient[];
   editedIngredient: Ingredient;
@@ -66,8 +63,8 @@ export function shoppingListReducer(
     case ShoppingListActions.STOP_EDIT:
       return {
         ...state,
-        editedIngredientIndex: null,
-        editedIngredient: -1,
+        editedIngredientIndex: -1,
+        editedIngredient: null,
       };
 
     default:
