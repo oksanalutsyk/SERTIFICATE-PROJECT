@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthResponseData, AuthService } from '../shaared/services/auth.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/reducers/app.reducer';
+import * as AuthActions from '../store/actions/auth.actions';
 
 @Component({
   selector: 'app-auth',
@@ -14,9 +14,13 @@ export class AuthComponent implements OnInit {
   error: string = null;
 
   authForm: FormGroup;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
+    this.store.select('auth').subscribe((authState) => {
+      this.isLoading = authState.loading;
+      this.error = authState.authError;
+    });
     this.authForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [
@@ -37,35 +41,24 @@ export class AuthComponent implements OnInit {
     const email = this.authForm.value.email;
     const password = this.authForm.value.password;
 
-    let authObs:Observable<AuthResponseData>;
-
-    this.isLoading = true;
-
     if (this.isLoginMode) {
       // Log In
-      authObs = this.authService.logIn(email, password)
+      this.store.dispatch(
+        new AuthActions.LogStart({ email: email, password: password })
+      );
     } else {
       // Sign Up
-      authObs =  this.authService.signUp(email, password)
+      this.store.dispatch(
+        new AuthActions.SignUpStart({
+          email: email,
+          password: password,
+        })
+      );
     }
-
-    authObs.subscribe(
-      (responseData) => {
-        console.log(responseData);
-        this.isLoading = false;
-        this.router.navigate(['/recipes'])
-      },
-      (errorMessage) => {
-        console.log(errorMessage);
-        this.error = errorMessage;
-        this.isLoading = false;
-      }
-    );
-
     this.authForm.reset();
   }
 
   onHandleError() {
-    this.error = null;
+    this.store.dispatch(new AuthActions.ClearError());
   }
 }
